@@ -1,4 +1,6 @@
-﻿New Relic Infrastructure is an agent which provides flexible, dynamic
+﻿# New Relic Infrastructure Chocolatey Package
+
+New Relic Infrastructure is an agent which provides flexible, dynamic
 server monitoring. Infrastructure empowers modern operations teams to make 
 intelligent decisions about complex systems, from a physical datacenter to 
 thousands of Amazon Elastic Compute Cloud (Amazon EC2) or Microsoft Azure 
