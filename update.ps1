@@ -1,6 +1,6 @@
 import-module au
 
-$releases = 'https://download.newrelic.com/infrastructure_agent/windows/'
+$releases = 'https://nr-downloads-main.s3.amazonaws.com/?delimiter=/&prefix=infrastructure_agent/windows/'
 
 function global:au_SearchReplace {
    @{
@@ -20,10 +20,13 @@ function global:au_SearchReplace {
 function global:au_GetLatest {
     $download_page = Invoke-WebRequest -Uri $releases -UseBasicParsing
 
-    $match = $download_page.Content | Select-String -Pattern '(https:.*newrelic-infra.*\.msi)'
-    $url = $match.Matches[0].value
+    $match = $download_page.Content | Select-String -Pattern '(windows/.*newrelic-infra.*\.msi)'
+    $url_suffix = $match.Matches[0].value
     
-    $version  = $url -split '[_-]|.msi' | Select-Object -Last 1 -Skip 3
+    $system_version = $url -split '[_-]infra\.|.msi' | Select-String ^\d*\.\d*\.\d*$ | %{ new-object System.Version ($_) } | Sort-Object | Select-Object -Last 1
+    $version = "$($system_version.Major).$($system_version.Minor).$($system_version.Build)"
+    $url = "https://download.newrelic.com/infrastructure_agent/windows/newrelic-infra.$($version).msi"
+
 
     @{
         Version      = $version
