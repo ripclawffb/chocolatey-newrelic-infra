@@ -1,18 +1,25 @@
 ﻿$ErrorActionPreference = 'Stop';
 
+$packageName     = 'newrelic-infra'
+$softwareName    = 'newrelic-infra*'
+
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
+$url        = 'https://download.newrelic.com/infrastructure_agent/windows/newrelic-infra.1.3.18.msi'
 $url64      = 'https://download.newrelic.com/infrastructure_agent/windows/newrelic-infra.1.3.18.msi'
 
 $packageArgs = @{
-  packageName   = $env:ChocolateyPackageName
+  packageName   = $packageName
   unzipLocation = $toolsDir
   fileType      = 'MSI'
+  url           = $url
   url64bit      = $url64
 
-  softwareName  = 'newrelic-infra*'
+  softwareName  = $softwareName
 
-  checksum64    = 'D4EA7988A1F1118B7BD6F32CE2C9FDEBC4207D56AF006A1153D77208224CB984'
-  checksumType64= 'sha256'
+  checksum       = 'd4ea7988a1f1118b7bd6f32ce2c9fdebc4207d56af006a1153d77208224cb984'
+  checksumType   = 'sha256'
+  checksum64     = 'd4ea7988a1f1118b7bd6f32ce2c9fdebc4207d56af006a1153d77208224cb984'
+  checksumType64 = 'sha256'
 
   silentArgs    = "/qn /norestart /l*v `"$($env:TEMP)\$($packageName).$($env:chocolateyPackageVersion).MsiInstall.log`""
   validExitCodes= @(0, 3010, 1641)

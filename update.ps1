@@ -7,6 +7,8 @@ function global:au_SearchReplace {
         ".\tools\chocolateyInstall.ps1" = @{
             "(?i)(^[$]packageName\s*=\s*)('.*')"  = "`$1'$($Latest.PackageName)'"
             "(?i)(^[$]softwareName\s*=\s*)('.*')" = "`$1'$($Latest.PackageName)*'"
+            "(?i)(^[$]url\s*=\s*)('.*')"          = "`$1'$($Latest.URL32)'"
+            "(checksum\s*=\s*)('.*')"             = "`$1'$($Latest.Checksum32)'"
             "(?i)(^[$]url64\s*=\s*)('.*')"        = "`$1'$($Latest.URL64)'"
             "(checksum64\s*=\s*)('.*')"           = "`$1'$($Latest.Checksum64)'"
         }
@@ -23,13 +25,14 @@ function global:au_GetLatest {
     $match = $download_page.Content | Select-String -Pattern '(windows/.*newrelic-infra.*\.msi)'
     $url_suffix = $match.Matches[0].value
     
-    $system_version = $url -split '[_-]infra\.|.msi' | Select-String ^\d*\.\d*\.\d*$ | %{ new-object System.Version ($_) } | Sort-Object | Select-Object -Last 1
+    $system_version = $url_suffix -split '[_-]infra\.|.msi' | Select-String ^\d*\.\d*\.\d*$ | %{ new-object System.Version ($_) } | Sort-Object | Select-Object -Last 1
     $version = "$($system_version.Major).$($system_version.Minor).$($system_version.Build)"
     $url = "https://download.newrelic.com/infrastructure_agent/windows/newrelic-infra.$($version).msi"
 
 
     @{
         Version      = $version
+        URL32        = $url
         URL64        = $url
         ReleaseNotes = 'https://docs.newrelic.com/docs/release-notes/infrastructure-release-notes/infrastructure-agent-release-notes'
     }
