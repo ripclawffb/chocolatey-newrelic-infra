@@ -4,7 +4,7 @@
   <metadata>
     <id>newrelic-infra</id>
     <version>1.3.18</version>
-    <packageSourceUrl>https://www.newrelic.com/</packageSourceUrl>
+    <packageSourceUrl>https://github.com/ripclawffb/chocolatey-newrelic-infra</packageSourceUrl>
     <owners>Asif Shaikh</owners>
     <title>New Relic Infrastructure (Install)</title>
     <authors>New Relic</authors>
