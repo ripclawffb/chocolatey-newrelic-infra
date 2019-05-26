@@ -13,7 +13,6 @@
     <copyright>2008 - 2019</copyright>
     <licenseUrl>https://docs.newrelic.com/docs/licenses/license-information</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <projectSourceUrl>https://download.newrelic.com/infrastructure_agent/windows/</projectSourceUrl>
     <docsUrl>https://docs.newrelic.com/docs/infrastructure/new-relic-infrastructure/getting-started/introduction-new-relic-infrastructure</docsUrl>
     <tags>newrelic-infra admin new relic infra infrastructure</tags>
     <summary>New Relic Infrastructure is an agent which provides flexible, dynamic server monitoring.</summary>
