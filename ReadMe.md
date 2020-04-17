@@ -1,5 +1,7 @@
 ﻿# New Relic Infrastructure Chocolatey Package
 
+[![Build status](https://ci.appveyor.com/api/projects/status/7s62w6v0sur9sslq/branch/master?svg=true)](https://ci.appveyor.com/project/ripclawffb/chocolatey-newrelic-infra/branch/master)
+
 New Relic Infrastructure is an agent which provides flexible, dynamic
 server monitoring. Infrastructure empowers modern operations teams to make 
 intelligent decisions about complex systems, from a physical datacenter to 
