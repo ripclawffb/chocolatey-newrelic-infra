@@ -30,12 +30,14 @@ if(Get-Variable -Name GenerateConfig -ErrorAction SilentlyContinue) {
   }
 }
 
+# Enable TLS 1.2
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
 
 $packageName     = 'newrelic-infra'
 $softwareName    = 'newrelic-infra*'
 
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$url64      = 'https://download.newrelic.com/infrastructure_agent/windows/newrelic-infra.1.15.2.msi'
+$url64      = 'https://download.newrelic.com/infrastructure_agent/windows/newrelic-infra.1.16.1.msi'
 
 $packageArgs = @{
   packageName   = $packageName
@@ -45,7 +47,7 @@ $packageArgs = @{
 
   softwareName  = $softwareName
 
-  checksum64     = 'c044b3601bb08cd2dcb318194c4b087303ed8d59ba7e35755f560066d523cf1b'
+  checksum64     = 'd4ff0d48891092cd9a2ee8af988289c00d8ea720b7318f0dc075879fe635080c'
   checksumType64 = 'sha256'
 
   silentArgs    = "/qn $additionalArgs /norestart /l*v `"$($env:TEMP)\$($packageName).$($env:chocolateyPackageVersion).MsiInstall.log`""
